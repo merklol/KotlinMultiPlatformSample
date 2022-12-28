@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class PostsViewModel(
+class MainViewModel(
     private val api: TypicodeApi
 ) : ViewModel() {
     private val _posts = MutableStateFlow<List<Post>>(emptyList())
@@ -29,7 +29,7 @@ class PostsViewModel(
     @Suppress("unchecked_cast")
     class Factory : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return TypicodeApi() as T
+            return MainViewModel(TypicodeApi()) as T
         }
     }
 }

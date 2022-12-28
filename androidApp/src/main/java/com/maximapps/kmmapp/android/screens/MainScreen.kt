@@ -10,11 +10,13 @@ import com.maximapps.kmmapp.android.AppTheme
 import com.maximapps.kmmapp.android.views.PostItem
 
 @Composable
-fun MainScreen(viewModel: PostsViewModel) {
+fun MainScreen(viewModel: MainViewModel) {
     AppTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
-            LazyColumn {
-                viewModel.posts.collectAsState().value.forEach { post -> item { PostItem(post) } }
+            with(viewModel.posts.collectAsState()) {
+                LazyColumn {
+                    value.forEach { post -> item { PostItem(post) } }
+                }
             }
         }
     }
